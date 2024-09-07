@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta Content-Type="text/html" charset="utf-8" />
     <title>Tic tac toe</title>
     <meta name="description" content="Piskvorky" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -81,16 +81,20 @@
         position: absolute;
         background-color: var(--selected-color);
         display: none;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        opacity: 0.9;
+        opacity: 0.7;
       }
 
       .modal p {
         line-height: calc(var(--cell-size) * 0.5);
         text-align: center;
         font-size: calc(var(--cell-size) * 0.5);
+      }
+
+      .modal .refresh:before {
+        content: "\21BA";
       }
     </style>
     <div class="board">
@@ -111,7 +115,8 @@
       </div>
     </div>
     <div class="modal">
-      <p>This is modal</p>
+      <p>text</p>
+      <p class="refresh"></p>
     </div>
     <script>
       let lastMark = "circle";
@@ -129,6 +134,9 @@
         document.querySelector(
           ".modal p"
         ).innerText = `${winningMark.toUpperCase()} WON!`;
+        document
+          .querySelector(".refresh")
+          .addEventListener("click", () => location.reload());
       }
 
       function isWon(cells) {
@@ -170,7 +178,7 @@
         }
       }
 
-      const cells = document.querySelectorAll("p");
+      const cells = document.querySelectorAll(".board .row p");
       cells.forEach((cell) => cell.addEventListener("click", handleCellClick));
     </script>
   </body>
