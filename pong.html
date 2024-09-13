@@ -21,6 +21,7 @@
 
       body {
         margin: 0;
+        overflow: hidden;
       }
 
       .railway {
@@ -102,15 +103,15 @@
       });
     }
 
+    function handleRelease() {
+      clearInterval(intervalId);
+    }
+
     const arrows = document.querySelectorAll("p[data-side]");
     arrows.forEach((arrow) => {
       arrow.addEventListener("pointerdown", handleHold);
-      arrow.addEventListener("pointereup", () => {
-        clearInterval(intervalId);
-      });
-      arrow.addEventListener("pointerout", () => {
-        clearInterval(intervalId);
-      });
+      arrow.addEventListener("pointereup", handleRelease);
+      arrow.addEventListener("pointerout", handleRelease);
     });
   </script>
 </html>
