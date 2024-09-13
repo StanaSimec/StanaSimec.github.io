@@ -104,19 +104,11 @@
 
     const arrows = document.querySelectorAll("p[data-side]");
     arrows.forEach((arrow) => {
-      arrow.addEventListener("click", (e) =>
-        moveRacket(e.srcElement.dataset.side)
-      );
-      arrow.addEventListener("mousedown", handleHold);
-      arrow.addEventListener("mouseup", () => {
+      arrow.addEventListener("pointerdown", handleHold);
+      arrow.addEventListener("pointereup", () => {
         clearInterval(intervalId);
       });
-      arrow.addEventListener("mouseout", () => {
-        clearInterval(intervalId);
-      });
-
-      arrow.addEventListener("touchstart", handleHold);
-      arrow.addEventListener("touchcancel", () => {
+      arrow.addEventListener("pointerout", () => {
         clearInterval(intervalId);
       });
     });
